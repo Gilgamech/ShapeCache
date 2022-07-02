@@ -6,7 +6,7 @@
 //Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
 //Notes: 
 
-icon_extrude("GilgamechTechnologies\\QRCode.dxf",1,1,5);
+icon_extrude("QRCode.dxf",1,1,5);
 
 include  <Gilgahedron.scad>
 //Basic Shapes
