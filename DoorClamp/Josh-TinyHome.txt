@@ -1,0 +1,85 @@
+1. Pellet Stove
+- Build
+-- BOM
+-- Stuff we will make
+-- Stuff we will buy (everything else)
+
+- Customers
+-- Off-grid
+Homesteading groups
+Farmers
+Preppers? 
+-- Simple operation - fewer moving parts means less can break. 
+People looking for the cheapest, simplest solution
+Very poor people (how to say this better?)
+-- Other sources
+
+- Testing
+EPA lab
+UL lab
+Others?
+(Check what testing other pellet groups are certified by)
+
+- Competitors
+Wiseways - $1600
+
+- Cost and price
+- Est $250 + 10h @ $60 = 600 = $850
+-- Mats
+Mild steel 4x4x1/4 burn tube - $25 - 1h
+4' long tube 
+Upper section 11ga mild steel - 4*$6=$24 - 2h
+2x1 of 1/16 wall tube - $1 - 5m
+Glass - 10x5 - $50
+
+Machines
+- Former $5000-$8000
+
+5h each = build 8/week = $2400/8= $300 + $250 = $550
+10h each = build 4/week = $2400/4 = $600 + $250 = $850
+
+- Weight and size: 
+30lbs 
+12"x20"x48" + 72" stack
+
+_tomake:
+Burn basket
+Hopper with shut off - todo
+Ash catch - another tube with openings etc
+Start by stuffing paper under burn basket, and igniting with barbecue lighter. 
+
+- Burn time and details
+Goal of 8 hours at full output (hopper big enough to hold 40lb bag of pellets)
+
+
+- Sales 
+
+
+- Loan Checklist
+Prototype done
+5 sold?
+EPA certified
+UL certified?
+Bus Lic etc
+Bank Acct
+Website
+Owner's credit
+
+
+
+
+2. Tiny Homes
+- Build
+-- BOM
+-- Stuff we will make
+Pellet Stove
+-- Stuff we will buy (everything else)
+
+- Customers
+-- Tiny Home shows
+-- Other sources
+
+- Financing
+-- Others sell for $80k
+-- Financing and bank partnerships help customers to buy
+
