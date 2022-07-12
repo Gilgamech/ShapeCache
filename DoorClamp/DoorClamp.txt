@@ -1,0 +1,37 @@
+- Door Clamp
+	- Cabinets
+
+Trailer Door clamp
+1. Park trailers within 6 inches of each other, closer if possible, and with the 2 doors lined up. One of the trailers has to have another entrance.
+2. Place weatherstripping wrap into the new threshold. Consider using tape or a another human to temporarily hold it in place.
+3. Place one of the upper angle clamps into one of the upper corners of the doorway. Consider which way the clamp bolts will extend, as these will remain through the use of the threshold clamp system - if they're in the way, you can swap corners so they're in the way in the other trailer. 
+- The weatherstripping wrap should be held in place by the clamp anchor angled bar on one side, and by the clamp screw angled bar on the other. 
+4. Repeat with the other upper angle clamp.
+5. Repeat with the two lower-door clamps.
+6. Adjust the ramp width and length screws to make the ramp as small as possible. Place threshold ramp in the middle of the door, so it extends into each trailer the same distance. Adjust the ramp width screws to make the ramp long enough to use comfortably on either side, then as wide as possible to secure it against the lower door clamps. 
+
+
+
+Design: 
+Weatherstripping wrap: 
+- 15 ft x 2 ft tarp
+Upper angle clamp: 
+- 2x 24" angle bar stock cut and welded into a 90 degree corner, like the corner of a picture frame.  
+- 4x 8" C-clamps, with all 4 clamp anchors welded to one of the angled bars, and the clamp screws welded to the other angled bar. They should be roughly equidistant, with 2 of the clamps on either side of the 90 degree corner.
+Lower angle clamp: 
+- 2x 24" angle bar stock.  
+- 3x 8" C-clamps, with all 3 clamp anchors welded to one of the angled bars, and the clamp screws welded to the other angled bar. They should be roughly equidistant, with the 2 on the ends half as far from the ends of the bar as the equidistance.
+
+
+E^2 = 	(mc^2)^2 / (1 − v^2/c^2)
+E^2 = (mc^2)^2 + (pc)^2
+E^2 = (mc^2)^2 + (c / 1 − v^2 / c^2)^2
+
+γ = 1 / 1 − v^2 / c^2
+p = γ 
+m v = 1 / 1 − v^2 / c^2
+
+E^2 − ( p c )^2 
+= γ^2 ( m c^2 )^2 − γ^2 ( m v c )^2 
+= γ^2 ( m c^2 )^2 ( 1 − v^2 c^2 ) 
+= ( m c^2 )^2
