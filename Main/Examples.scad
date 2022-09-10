@@ -10,7 +10,7 @@ include  <Gilgahedron.scad>
 include  <lib-gear-dh.scad>
 include  <lib-worm-dh.scad>
 
-roundedEdge();
+geardemo();
 
 //gears
 module geardemo(){
