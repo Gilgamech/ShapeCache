@@ -22,7 +22,7 @@ gText("  world with",textHeight,textHeight,height,xOffset,0,zOffset*3-3,90);
 gText("  Gilgamech",textHeight*.9,textHeight,height,xOffset,0,zOffset*2-3,90);
 gText("Technologies",textHeight*.95,textHeight,height,xOffset,0,zOffset*1-3,90);
 gText("",textHeight,textHeight,height,xOffset,0,zOffset*0-3,90);
-gText("Gilgmech.com",textHeight*.85,textHeight*.85,height,xOffset,0,zOffset*-1-3,90);
+gText("Gilgamech.com",textHeight*.8,textHeight*.8,height,xOffset,0,zOffset*-1-3,90);
 gText("206-458-0493",textHeight*.9,textHeight,height,xOffset,0,zOffset*-2-3,90);
 }
 }
