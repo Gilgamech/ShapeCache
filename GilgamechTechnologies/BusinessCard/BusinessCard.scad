@@ -4,7 +4,11 @@
 //Created on: 4/07/2022
 //Updated on: 5/25/2022
 //Units: millimeters (.001) 
-//Notes: 
+//Notes: Adhesion is a sloppy way to make the cart work, leading to a gummy ux. 
+//1.0.6 - intruded letters w/ adhesion
+//1.0.7 - extruded letters w/ adhesion
+//1.0.8 - extruded letters w/o adhesion
+//1.0.9 - intruded letters w/o adhesion
 
 include  <Gilgahedron.scad>
 
@@ -19,7 +23,7 @@ bodyX=cardX/2-9.5;//34.95
 bodyY=(cardY-aMiniY)/2-3;//14.93
 bodyYloc=cardY/3-.25;//15.33
 driveshaftY=cardY/2-.5;//23.8
-
+fittingSize=cardZ*2.3;//2.3
 
 zVisAdj=.1;//raised for visibility
 
@@ -40,18 +44,24 @@ gTextBase("Gillie",1,3);
 gTextBase("206-458",3,3);
 gTextBase("-0493",4,3);
 
-gTextBase("v1.0.6",8,4);
+gTextBase("v1.0.9",8,4);
  }
 }
 
 module bizCard(){
 justSide("Gilgamech",5,180);//right side
+gCube(bodyX*.8,1,.5,0,-10);//right connector
 base();
 justSide("Technologies",4);//left side
+gCube(bodyX*.8,1,.5,0,10);//left connector
+
+gCube(bodyX*.8,1,.3,0,23.5);//Left Driveshaft Join
+gCube(bodyX*.8,1,.3,0,-23.5); //Right Driveshaft Join
 
 wheels();
-gCube(bodyX,cardZ,cardZ,0,driveshaftY,zVisAdj);//driveshaft
-gCube(bodyX,cardZ,cardZ,0,-driveshaftY,zVisAdj);//driveshaft
+dsSize = fittingSize*.7;
+gCube(bodyX,dsSize,dsSize,0,driveshaftY,dsSize/4);//driveshaft
+gCube(bodyX,dsSize,dsSize,0,-driveshaftY,dsSize/4);//driveshaft
 }
 module justSide(text="test",size=5,rot=0){
 axleDia=1.5;
@@ -86,7 +96,6 @@ justWheel(-wheelXLoc,-wheelYLoc,wheelRad);
 
 module justWheel(wheelXLoc=0,wheelYLoc=0,wheelRad=cardY/4){
 bigGSize=.6;
-fittingSize=cardZ*2.3;
 difference(){
 gCylinder(cardZ,wheelRad,wheelRad,
     wheelXLoc,wheelYLoc,zVisAdj);//wheel
