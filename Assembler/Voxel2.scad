@@ -7,7 +7,7 @@
 //Notes: 
 include  <Gilgahedron.scad>
 
-
+rotate([0,90,0])
 voxelHedron(50);
 module voxelHedron(s = 1){
 sz = s*1.3;
