@@ -5,8 +5,12 @@
 //Updated on: 5/21/2022
 //Units: millimeters (.001)
 //Notes: 
-include  <Gilgahedron.scad>
+//v1.0 base voxel
+//v1.1 triFill to reinforce arms
+//v1.1.1 triBigG logo 
+//v1.2 reCube to reinforce joints
 
+include  <Gilgahedron.scad>
 union(){
 voxelHedron(45);
 
@@ -19,17 +23,72 @@ triFill(0,180);
 triFill(0,270);
 triFill(0,0,180);
 triFill(0,90,180);
+
+//reCubes rotate around a square:
+//reCube(0,0,90);//0,y,bot
+//reCube(90,0,90);//x,y,mid
+//reCube(180,0,90);//0,y,top
+//reCube(270,0,90);//-x,y,mid
+//OR X=0 is top, 90 & 270 are mid, and 180 is bot.
+//Adjust X to adjust corner, adjust Z to change square, adjust Y to mess it up.
+
+reCube(0,0,0);//x,0,top
+reCube(0,0,90);//0,y,top
+reCube(0,0,180);//-x,0,top
+reCube(0,0,270);//0,-y,top
+
+reCube(90,0,0);//x,-y,mid
+reCube(90,0,90);//x,y,mid
+reCube(90,0,180);//-x,y,mid
+reCube(90,0,270);//-x,-y,mid
+
+reCube(180,0,0);//x,0,bot
+reCube(180,0,90);//0,y,bot
+reCube(180,0,180);//-x,0,bot
+reCube(180,0,270);//0,-y,bot
+}
+module reCube(rx=0,ry=0,rz=0){
+adj=7;
+tp = 31.9;
+fr = tp;
+bk = fr-adj;
+lf = adj-2;
+    
+rt = -adj;
+bo = tp-adj;
+CubePoints = [
+  [ fr, 0,  tp ],  //0 - nose (front center top)
+  [ bk, lf, tp ],  //1 - bk left top
+  [ bk, rt, tp ],  //2 - bk rt top
+  [ fr, lf, bo ],  //3 - fr left bot
+  [ fr, rt, bo ]]; //4 - fr rt bot
+CubeFaces = [
+  [1,2,4,3],  // bottom
+  [0,4,2],  // right
+  [0,2,1],  // top
+  [0,1,3],  // left
+  [0,3,4]]; // front
+  
+rotate([rx,ry,rz])
+polyhedron( CubePoints, CubeFaces );
+}
+
+module triBigG(sg = .65,re = 45,su = 21.5){
+translate([su,-su,su])
+rotate([re+9,0,re])
+translate([0,0,-2])
+icon_extrude("BigG.dxf",sg,sg,2);
 }
 module triFill(rx=0,ry=0,rz=0){
-pt = 29.1;
-pv = 31.8;
+in = 29.1;
+ot = 31.8;
 CubePoints = [
-  [ pt, pt,  0 ],  //0 - x,y
-  [ pt,  0, pt ],  //1 - x,z
-  [  0, pt, pt ],  //2 - y,z
-  [ pv, pv,  0 ],  //3 - x,y
-  [ pv,  0, pv ],  //4 - x,z
-  [  0, pv, pv ]]; //5 - y,z
+  [ in, in,  0 ],  //0 - x,y
+  [ in,  0, in ],  //1 - x,z
+  [  0, in, in ],  //2 - y,z
+  [ ot, ot,  0 ],  //3 - x,y
+  [ ot,  0, ot ],  //4 - x,z
+  [  0, ot, ot ]]; //5 - y,z
   
 CubeFaces = [
   [2,1,0],  // inside
@@ -40,6 +99,7 @@ CubeFaces = [
   
 rotate([rx,ry,rz])
 polyhedron( CubePoints, CubeFaces );
+//triBigG();
 }
 
 module voxelHedron(s = 1){
