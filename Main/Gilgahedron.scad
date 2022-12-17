@@ -2,9 +2,10 @@
 //Title: Gilgahedron
 //Made by: Stephen Gillie
 //Created on: 3/17/2022
-//Updated on: 5/17/2022
+//Updated on: 12/17/2022
 //Units: any
 //Notes: 
+//v1.4 all shapes checked for inversions with f12, normalized to units of 1, and support full Gilgahedron notation (dimensions of size/scale, translation, rotation)
 
 //icon_extrude("BigG.dxf",1,1,5);
 //inverse_icon_extrude("BigG.dxf",1,1,5);
@@ -32,7 +33,8 @@ rotate([xRotate,yRotate,zRotate])
 
 
 //Complex polyhedra
-module pyramid() {
+module pyramid(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+
 Points = [
   [ 0,  0,  0 ],  //0
   [ 8,  0,  0 ],  //1
@@ -47,25 +49,32 @@ Faces = [
   [4,3,2],  // back
   [4,0,3]]; // left
   
+translate([xMove,yMove,zMove])
+rotate([xRotate,yRotate,zRotate])
+    scale([xScale,yScale,zScale]) 
 polyhedron( Points, Faces );
 }
-module d4() {
+module d4(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+
 Points = [
   [ 0,  0,  0 ],  //0
-  [ 8,  2,  0 ],  //1
-  [ 2,  8,  0 ],  //2
-  [ 3,  3,  7]];  //3
+  [ 1,  .25,  0 ],  //1
+  [ .25,  1,  0 ],  //2
+  [ .375,  .375,  .875]];  //3
 
 Faces = [
   [0,1,2],  // bottom
-  [0,1,3],  // front
-  [0,2,3],  // back
-  [0,1,3], // right
-  [1,2,3]]; // left
+  [1,0,3],  // right
+  [0,2,3],  // left
+  [1,3,2]]; // back
   
+translate([xMove,yMove,zMove])
+rotate([xRotate,yRotate,zRotate])
+    scale([xScale,yScale,zScale]) 
 polyhedron( Points, Faces );
 }
-module d8(){
+module d8(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+
 Points = [
   [ 4, 4, 0 ],  //0
   [ 8, 0, 6 ],  //1
@@ -79,17 +88,27 @@ Faces = [
   [0,2,3], // bottom right
   [0,3,4], // bottom back
   [0,4,1], // bottom left
-  [5,1,2], // top front
-  [5,2,3], // top right
-  [5,3,4], // top back
-  [5,4,1]]; // top left
+  [1,5,2], // top front
+  [2,5,3], // top right
+  [3,5,4], // top back
+  [4,5,1]]; // top left
   
+translate([xMove,yMove,zMove])
+rotate([xRotate,yRotate,zRotate])
+    scale([xScale,yScale,zScale]) 
 polyhedron( Points, Faces );
 }
-module silo(height=80,diameter=33){
+module silo(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+
+height=.7075;
+diameter=height*0.4125;
+
+translate([xMove,yMove,zMove+(height/2)])
+rotate([xRotate,yRotate,zRotate])
+    scale([xScale,yScale,zScale]) {
 gCylinder(height,diameter,diameter);
 gSphere(diameter,diameter,diameter,0,0,height/2);
-}
+}}
 
 //Extrusion
 module file_extrude(filename="bigG.dxf"){
