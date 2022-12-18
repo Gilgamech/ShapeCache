@@ -53,8 +53,7 @@ tp = 31.9;
 fr = tp;
 bk = fr-adj;
 lf = adj-2;
-    
-rt = -adj;
+rt = -lf;
 bo = tp-adj;
 CubePoints = [
   [ fr, 0,  tp ],  //0 - nose (front center top)
