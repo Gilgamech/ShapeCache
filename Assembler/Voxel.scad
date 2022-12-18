@@ -9,8 +9,10 @@
 //v1.1 triFill to reinforce arms
 //v1.1.1 triBigG logo 
 //v1.2 reCube to reinforce joints
+//v1.3 add pegs and slots for structural support.
 
 include  <Gilgahedron.scad>
+difference(){
 union(){
 voxelHedron(45);
 
@@ -32,24 +34,49 @@ triFill(0,90,180);
 //OR X=0 is top, 90 & 270 are mid, and 180 is bot.
 //Adjust X to adjust corner, adjust Z to change square, adjust Y to mess it up.
 
-reCube(0,0,0);//x,0,top
-reCube(0,0,90);//0,y,top
-reCube(0,0,180);//-x,0,top
-reCube(0,0,270);//0,-y,top
+for (x =[0,90,180]){
+for (z =[0,90,180,270]){
+reCube(x,0,z);
+}}
 
-reCube(90,0,0);//x,-y,mid
-reCube(90,0,90);//x,y,mid
-reCube(90,0,180);//-x,y,mid
-reCube(90,0,270);//-x,-y,mid
+addRepost();
+}//end union
+rotate([180,270,0])
+addRepost(-4,1.1);
+}
 
-reCube(180,0,0);//x,0,bot
-reCube(180,0,90);//0,y,bot
-reCube(180,0,180);//-x,0,bot
-reCube(180,0,270);//0,-y,bot
+
+
+module addRepost(xadj=0,radj=1){
+for (z =[0,90]){
+rePost(0,z,0,xadj,radj);
+rePost(90,z,0,xadj,radj);
+}
+}
+module rePost(ry=0,rz=0,t=0,xadj=0,radj=1){
+tp = 31.84;
+h=5;
+r=2*radj;
+xm = tp+(h/2)+xadj;
+ym = 0;
+zm = tp-4;
+xr = 0;
+zr = 90;
+
+for (rx =[0,90,180,270]){
+rotate([rx,ry,rz]){
+if (t==0){//posts
+}else {//gaps
+r =r*1.1;
+xm = tp-(h*.8);
+zm = tp-2;
+}
+gCylinder(h,r,r,xm,ym,zm,xr,zr);
+}}
 }
 module reCube(rx=0,ry=0,rz=0){
 adj=7;
-tp = 31.9;
+tp = 31.84;
 fr = tp;
 bk = fr-adj;
 lf = adj-2;
@@ -68,8 +95,9 @@ CubeFaces = [
   [0,1,3],  // left
   [0,3,4]]; // front
   
-rotate([rx,ry,rz])
+rotate([rx,ry,rz]){
 polyhedron( CubePoints, CubeFaces );
+}
 }
 
 module triBigG(sg = .65,re = 45,su = 21.5){
