@@ -1,15 +1,13 @@
 //Copyright 2022 Gilgamech Technologies
 //Title: 
 //Made by: Stephen Gillie
-//Created on: 4/07/2022
-//Updated on: 5/21/2022
+//Created on: 12/2/2022
+//Updated on: 12/21/2022
 //Units: millimeters (.001)
 //Notes: 
-//v1.0 base voxel
-//v1.1 triFill to reinforce arms
-//v1.1.1 triBigG logo 
-//v1.2 reCube to reinforce joints
-//v1.3 add pegs and slots for structural support.
+//v1.3 add pegs and holes for structural support.
+//v1.4 reduce peg length.
+//v1.4.1 increase reCube size by .25 mm to increase hole support and prevent cracks.
 
 include  <Gilgahedron.scad>
 difference(){
@@ -17,12 +15,10 @@ union(){
 voxelHedron(45);
 
 triFill();
-triFill(90);
-triFill(180);
-triFill(270);
-triFill(0,90);
-triFill(0,180);
-triFill(0,270);
+for (r =[90,180,270]){
+triFill(r);
+triFill(0,r);
+}
 triFill(0,0,180);
 triFill(0,90,180);
 
@@ -42,20 +38,17 @@ reCube(x,0,z);
 addRepost();
 }//end union
 rotate([180,270,0])
-addRepost(-4,1.1);
+addRepost(-4,1.1,5);
 }
 
-
-
-module addRepost(xadj=0,radj=1){
+module addRepost(xadj=0,radj=1,h=2){
 for (z =[0,90]){
-rePost(0,z,0,xadj,radj);
-rePost(90,z,0,xadj,radj);
+rePost(0,z,0,xadj,radj,h);
+rePost(90,z,0,xadj,radj,h);
 }
 }
-module rePost(ry=0,rz=0,t=0,xadj=0,radj=1){
+module rePost(ry=0,rz=0,t=0,xadj=0,radj=1,h=2){
 tp = 31.84;
-h=5;
 r=2*radj;
 xm = tp+(h/2)+xadj;
 ym = 0;
@@ -75,7 +68,7 @@ gCylinder(h,r,r,xm,ym,zm,xr,zr);
 }}
 }
 module reCube(rx=0,ry=0,rz=0){
-adj=7;
+adj=7.25;
 tp = 31.84;
 fr = tp;
 bk = fr-adj;
