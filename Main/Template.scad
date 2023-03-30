@@ -11,8 +11,9 @@ icon_extrude("BigG.dxf",1,1,5);
 
 //Basic Shapes
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
-//gCylinder(h,r1,r2,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+//gCylinder(height,bottomRadius,topRadius,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gSphere(xScale,yScale,zScale,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+//gOval(height,narrow,wide);
 
 //Complex polyhedra
 //pyramid();
