@@ -5,10 +5,10 @@
 //Updated on: 5/21/2022
 //Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
 //Notes: 
+include  <Gilgahedron.scad>
 
 icon_extrude("BigG.dxf",1,1,5);
 
-include  <Gilgahedron.scad>
 //Basic Shapes
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gCylinder(h,r1,r2,xMove,yMove,zMove,xRotate,yRotate,zRotate);

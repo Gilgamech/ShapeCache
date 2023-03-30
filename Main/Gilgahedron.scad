@@ -1,11 +1,12 @@
-//Copyright 2022 Gilgamech Technologies
-//Title: Gilgahedron
+//Copyright 2022-2023 Gilgamech Technologies
+//Title: Gilgahedron.scad v1.5
 //Made by: Stephen Gillie
 //Created on: 3/17/2022
-//Updated on: 12/17/2022
+//Updated on: 3/29/2023
 //Units: any
 //Notes: 
 //v1.4 all shapes checked for inversions with f12, normalized to units of 1, and support full Gilgahedron notation (dimensions of size/scale, translation, rotation)
+//1.5: Added gOval.
 
 //icon_extrude("BigG.dxf",1,1,5);
 //inverse_icon_extrude("BigG.dxf",1,1,5);
@@ -30,7 +31,10 @@ rotate([xRotate,yRotate,zRotate])
     sphere(r=(1),$fn=100);
 }
 
-
+module gOval(h=100,x=40,y=60) {
+    scale([1,(y/x),1])
+    gCylinder(100,40,40);
+}
 
 //Complex polyhedra
 module pyramid(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
