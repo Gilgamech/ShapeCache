@@ -1,20 +1,28 @@
 //Copyright 2023 Gilgamech Technologies
-//Title: 
+//Title: bracelets.scad v0.3
 //Made by: Stephen Gillie
 //Created on: 3/29/2023
 //Updated on: 3/29/2023
-//Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
-//Notes:
-//Version History: 
+//Units: millimeters (.001)
+//Notes: 
+//Version History:
+//0.1 Create gOval.
+//0.2 difference gOvals to make bracelet.
+//0.3 Add difference gCube to halve bracelet. 
 include  <Gilgahedron.scad>
 
-icon_extrude("BigG.dxf",1,1,5);
+difference() {
+gOval(60,75,65);
+gOval(100,65,55);
+gCube(200,100,100,0,50);
+}
+
 
 //Basic Shapes
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gCylinder(height,bottomRadius,topRadius,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gSphere(xScale,yScale,zScale,xMove,yMove,zMove,xRotate,yRotate,zRotate);
-//gOval(height,narrow,wide,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+//gOval(height,narrow,wide);
 
 //Complex polyhedra
 //pyramid();
