@@ -4,7 +4,8 @@
 //Created on: 4/07/2022
 //Updated on: 3/29/2023
 //Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
-//Notes: 
+//Notes:
+//Version History: 
 include  <Gilgahedron.scad>
 
 icon_extrude("BigG.dxf",1,1,5);
@@ -13,7 +14,7 @@ icon_extrude("BigG.dxf",1,1,5);
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gCylinder(height,bottomRadius,topRadius,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gSphere(xScale,yScale,zScale,xMove,yMove,zMove,xRotate,yRotate,zRotate);
-//gOval(height,narrow,wide);
+//gOval(height,narrow,wide,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 
 //Complex polyhedra
 //pyramid();
