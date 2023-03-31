@@ -1,15 +1,14 @@
 //Copyright 2023 Gilgamech Technologies
-//Title: bracelets.scad v0.3
+//Title: bracelets.scad v1.0
 //Made by: Stephen Gillie
 //Created on: 3/29/2023
-//Updated on: 3/29/2023
+//Updated on: 3/30/2023
 //Units: millimeters (.001)
 //Notes: 
 //Version History:
-//0.1 Create gOval.
-//0.2 difference gOvals to make bracelet.
 //0.3 Add difference gCube to halve bracelet. 
 //0.3.1 Move code into braceletHalf module.
+//1.0 Add bPost module to create pin interface.
 include  <Gilgahedron.scad>
 
 module braceletHalf(height){
@@ -19,14 +18,26 @@ module braceletHalf(height){
         gCube(200,100,100,0,50);
     }
 }
+
+module bPost(pins,pinHeight,pinWidth,height){
+    difference() {
+braceletHalf(height);
+for (i=[0:1:pins]){
+gCylinder(pinHeight,pinWidth*1.1,pinWidth*1.1,-35,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
+}
+}
+for (i=[0:1:pins]){
+gCylinder(pinHeight,pinWidth,pinWidth,35,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
+}
 }
 
+bPost(4,7,2,60);
 
 //Basic Shapes
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gCylinder(height,bottomRadius,topRadius,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //gSphere(xScale,yScale,zScale,xMove,yMove,zMove,xRotate,yRotate,zRotate);
-//gOval(height,narrow,wide);
+//gOval(height,narrow,wide,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 
 //Complex polyhedra
 //pyramid();
