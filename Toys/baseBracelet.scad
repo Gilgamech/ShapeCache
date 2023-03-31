@@ -9,12 +9,16 @@
 //0.1 Create gOval.
 //0.2 difference gOvals to make bracelet.
 //0.3 Add difference gCube to halve bracelet. 
+//0.3.1 Move code into braceletHalf module.
 include  <Gilgahedron.scad>
 
-difference() {
-gOval(60,75,65);
-gOval(100,65,55);
-gCube(200,100,100,0,50);
+module braceletHalf(height){
+    difference() {
+        gOval(height,75/2,65/2);
+        gOval(100,65/2,55/2);
+        gCube(200,100,100,0,50);
+    }
+}
 }
 
 
