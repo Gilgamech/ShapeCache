@@ -58,7 +58,7 @@ difference() {
 
 
 //Polyhedron demo
-module polyCube(fr,bk,lf,rt,tp,bt){
+module polyCube(fr,bk,lf,rt,tp,bo){
 CubePoints = [
   [ fr, lf, tp ], //0 - fr left top
   [ fr, rt, tp ], //1 - fr rt top
