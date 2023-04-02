@@ -1,8 +1,8 @@
 //Copyright 2023 Gilgamech Technologies
 //Title: 
 //Made by: Stephen Gillie
-//Created on: 3/29/2023
-//Updated on: 3/29/2023
+//Created on: 4/02/2023
+//Updated on: 4/02/2023
 //Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
 //Notes:
 //Version History: 
@@ -56,6 +56,29 @@ difference() {
     gCube(15,15,15,0,-24);
 }}
 
+
+//Polyhedron demo
+module polyCube(fr,bk,lf,rt,tp,bt){
+CubePoints = [
+  [ fr, lf, tp ], //0 - fr left top
+  [ fr, rt, tp ], //1 - fr rt top
+  [ bk, lf, tp ], //2 - back left top
+  [ bk, rt, tp ], //3 - back rt top
+  [ fr, lf, bo ], //4 - fr left bt
+  [ fr, rt, bo ], //5 - fr rt bt
+  [ bk, lf, bo ], //6 - back left bt
+  [ bk, rt, bo ]  //7 - back rt bt
+];
+CubeFaces = [
+  [0,1,3,2],  // top
+  [4,5,7,6],  // bottom
+  [0,1,5,4], // front
+  [2,3,7,6], // back
+  [0,4,6,2],  // left
+  [1,5,7,3]  // right
+];
+polyhedron( CubePoints, CubeFaces );
+}
 
 //gear stock
 include  <lib-gear-dh.scad>
