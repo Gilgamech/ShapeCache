@@ -69,6 +69,7 @@ CubePoints = [
   [ bk, lf, bo ], //6 - back left bt
   [ bk, rt, bo ]  //7 - back rt bt
 ];
+//Press F12 to troubleshoot inverted faces.
 CubeFaces = [
   [0,1,3,2],  // top
   [4,5,7,6],  // bottom

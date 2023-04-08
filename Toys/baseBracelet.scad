@@ -10,28 +10,31 @@
 //0.3.1 Move code into braceletHalf module.
 //1.0 Add bPost module to create pin interface.
 include  <Gilgahedron.scad>
-
-module braceletHalf(height){
+module braceletHalf(height,w1=65,w2=75){
     difference() {
-        gOval(height,75/2,65/2);
-        gOval(100,65/2,55/2);
+        gOval(height,w2/2,w1/2);
+        gOval(100,(w2-10)/2,(w1-10)/2);
         gCube(200,100,100,0,50);
     }
 }
 
-module bPost(pins,pinHeight,pinWidth,height){
+module bPost(pins=4,pinHeight=7,pinWidth=2,height=60,w1,w2){
+    pins = pins -1;
     difference() {
-braceletHalf(height);
+braceletHalf(height,w1,w2);
 for (i=[0:1:pins]){
-gCylinder(pinHeight,pinWidth*1.1,pinWidth*1.1,-35,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
+gCylinder(pinHeight,pinWidth*1.15,pinWidth*1.15,-(w2/2)+pinWidth*1.25,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
 }
 }
 for (i=[0:1:pins]){
-gCylinder(pinHeight,pinWidth,pinWidth,35,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
+gCylinder(pinHeight,pinWidth,pinWidth,(w2/2)-pinWidth*1.25,0,(height/pins*i)-(height/2)+pinWidth*2+(pinWidth*4*(-i/pins)),90);
 }
 }
-
-bPost(4,7,2,60);
+module baseBracelet(w1=65,w2=75,height=60,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+translate([xMove,yMove,zMove])
+rotate([xRotate,yRotate,zRotate])
+    bPost(5,7,2,height,w1,w2);
+}
 
 //Basic Shapes
 //gCube(xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
