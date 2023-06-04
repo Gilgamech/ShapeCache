@@ -246,10 +246,12 @@ intersection() {
     gCube(xSize,ySize,zSize,xTrans,yTrans,zTrans,xRot,yRot,zRot);
 }}
 //gears
-module gGear(scale=1,teeth=10,thickness=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+module gGear(OD=1,teeth=10,thickness=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
 translate([xMove,yMove,zMove])
 rotate([xRotate,yRotate,zRotate])
-    gear(teeth,thickness,scale);
+scale([OD/(teeth/10),OD/(teeth/10),thickness])
+    //gear(teeth,thickness,scale);
+    gear(teeth,10*4.35,5/4.35);
 }
 //library
 module checkPrint(Size=109){gCube(Size,Size,Size);}
