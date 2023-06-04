@@ -1,16 +1,20 @@
 //Copyright 2022-2023 Gilgamech Technologies
-//Title: Gilgahedron.scad v1.5.1
+//Title: Gilgahedron.scad v1.9
 //Made by: Stephen Gillie
 //Created on: 3/17/2022
-//Updated on: 3/29/2023
+//Updated on: 6/4/2023
 //Units: any
 //Notes: 
-//v1.4 all shapes checked for inversions with f12, normalized to units of 1, and support full Gilgahedron notation (dimensions of size/scale, translation, rotation)
-//1.5: Added gOval.
-//1.5.1: gOval enhancements.
+//1.8: Added gHex.
+//1.8.1: Bugfix to gOval.
+//1.9: Added gGear.
 
 //icon_extrude("BigG.dxf",1,1,5);
 //inverse_icon_extrude("BigG.dxf",1,1,5);
+
+//Third party includes.
+include  <lib-gear-dh.scad>
+include  <lib-worm-dh.scad>
 
 //Basic Shapes
 module gCube(xSize=1,ySize=1,zSize=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
@@ -19,10 +23,10 @@ rotate([xRotate,yRotate,zRotate])
     cube([xSize,ySize,zSize],center=true);
 }
 
-module gCylinder(h=1,r1=1,r2=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+module gCylinder(c1=1,c2=1,h=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
 translate([xMove,yMove,zMove])
 rotate([xRotate,yRotate,zRotate])
-    cylinder(h,r1,r2,center=true,$fn=100);
+    cylinder(h,c1/2,c2/2,center=true,$fn=100);
 }
 
 module gSphere(xScale=1,yScale=1,zScale=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
@@ -32,11 +36,11 @@ rotate([xRotate,yRotate,zRotate])
     sphere(r=(1),$fn=100);
 }
 
-module gOval(h=1,x=1,y=2,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0) {
+module gOval(x=1,y=2,z=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0) {
     translate([xMove,yMove,zMove])
     rotate([xRotate,yRotate,zRotate])
     scale([1,(y/x),1])
-    gCylinder(h,x,x);
+    gCylinder(x,x,z);
 }
 
 //Complex polyhedra
@@ -176,6 +180,18 @@ gCylinder(zSize,cr,cr,-cx,cy);
 gCylinder(zSize,cr,cr,cx,-cy);
 gCylinder(zSize,cr,cr,-cx,-cy);
 }}
+module gHex(width=1,height=1,xTrans=0,yTrans=0,zTrans=0,xRot=0,yRot=0,zRot=0){
+translate([xTrans,yTrans,zTrans])
+    rotate([xRot,yRot,zRot])
+hull(){
+//c = a/(sqrt(3)/2);
+sharp = width/10;
+width = width/(sqrt(3)/2);
+for (i = [0:60:360])
+rotate([0,0,i])
+gCylinder(sharp,sharp,height,(width/2)-(sharp/2));
+
+}}
 module gBowl(length=4,width=4,depth=4,xTrans=0,yTrans=0,zTrans=0,xRot=0,yRot=0,zRot=0){
 translate([xTrans,yTrans,zTrans])
     rotate([xRot,yRot,zRot])
@@ -183,6 +199,41 @@ difference(){
     gSphere(length,width,depth);
     gSphere(length,width,depth*1.125,0,0,depth*.125);
 }}
+
+//gIsoThread(8,4,20);
+module gIsoThread(OD=1,pitch=1,length=1,oversizePct=0,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+//Pitch is mm between the peaks or troughs of 2 threads.
+length = length/2;
+OD = OD*1.5*(1+oversizePct);
+//Dp = OD-(3/8*sqrt(3)*pitch);
+Dmin = OD-(5/8*sqrt(3)*(pitch));
+cRad = Dmin/2;
+pitch = pitch*5;
+md = 20;
+ls = length*md;
+ld = length*ls;
+ds = OD*md;
+zs = length*(ls/2+1);
+
+translate([xMove,yMove,zMove+length])
+rotate([xRotate,yRotate,zRotate+60])
+difference(){
+union(){
+    for (i=[0:1:(length*2/pitch)]) {
+gCylinder(cRad,cRad,length*3);
+        translate([0,0,i*(1.1*pitch)-length]){
+        scale([OD,OD,pitch]){
+            worm(1);
+           translate([0,0,(pitch*oversizePct)])
+                worm(1);
+            }
+        }
+    }
+}
+gCube(ds,ds,ld,0,0,zs);//Ceiling
+gCube(ds,ds,ld,0,0,-zs);//Floor
+}
+}
 //bar stock
 module gTube(length=1,r1=1,r2=1,xTrans=0,yTrans=0,zTrans=0,xRot=0,yRot=0,zRot=0){
 difference(){
@@ -194,5 +245,11 @@ intersection() {
     gCylinder(zSize,ySize/2,ySize/2,xTrans,yTrans,zTrans,xRot,yRot,zRot);
     gCube(xSize,ySize,zSize,xTrans,yTrans,zTrans,xRot,yRot,zRot);
 }}
+//gears
+module gGear(scale=1,teeth=10,thickness=1,xMove=0,yMove=0,zMove=0,xRotate=0,yRotate=0,zRotate=0){
+translate([xMove,yMove,zMove])
+rotate([xRotate,yRotate,zRotate])
+    gear(teeth,thickness,scale);
+}
 //library
 module checkPrint(Size=109){gCube(Size,Size,Size);}

@@ -1,8 +1,8 @@
 //Copyright 2023 Gilgamech Technologies
 //Title: 
 //Made by: Stephen Gillie
-//Created on: 4/02/2023
-//Updated on: 4/02/2023
+//Created on: 6/06/2023
+//Updated on: 6/06/2023
 //Units: idk (idk) meters (1) inches (0.0254) cm (.01) millimeters (.001) feet (.3048)
 //Notes:
 //Version History: 
@@ -23,14 +23,18 @@ icon_extrude("BigG.dxf",1,1,5);
 //silo(height,diameter);
 
 //Extrusion
-//icon_extrude("BigG.dxf",height);
-//icon_extrude(filename,height);
+//icon_extrude(filename,xSize,ySize,zSize,xMove,yMove,zMove,xRotate,yRotate,zRotate);
 //inverse_icon_extrude(filename,height);
 //gText(text,xSize,ySize,zSize,xTrans,yTrans,zTrans,xRot,yRot,zRot)
 
 //Bar Stock
 //gTube(length,r1,r2,xTrans,yTrans,zTrans,xRot,yRot,zRot);
 //roundedEdge(xSize,ySize,zSize,xTrans,yTrans,zTrans,xRot,yRot,zRot);
+
+//gWorm(length,OD,pitch,oversizePct,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+//gIsoThread(OD,pitch,length,oversizePct,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+//gGear(scale,teeth,thickness,xMove,yMove,zMove,xRotate,yRotate,zRotate);
+
 
 //Check if print will fit on printer
 //checkPrint();
@@ -58,7 +62,7 @@ difference() {
 
 
 //Polyhedron demo
-module polyCube(fr,bk,lf,rt,tp,bo){
+module polyCube(fr=0,bk=1,lf=0,rt=1,tp=0,bo=1){
 CubePoints = [
   [ fr, lf, tp ], //0 - fr left top
   [ fr, rt, tp ], //1 - fr rt top
@@ -79,20 +83,4 @@ CubeFaces = [
   [1,5,7,3]  // right
 ];
 polyhedron( CubePoints, CubeFaces );
-}
-
-//gear stock
-include  <lib-gear-dh.scad>
-include  <lib-worm-dh.scad>
-module geardemo(){
-// gear(teeth,thikness,scale);
-gear(24,8,10);
-translate([00,12,00])
-gear(10,8,10);
-}
-module wormdemo(){
-// worm(): same scaling as gears
-translate([-6,18.75,00])
-rotate([00,90,00])
-worm(10);
 }
